@@ -15,7 +15,7 @@ const MainLayout = () => {
           <Banner />
         </div>
       )}
-      <div className="min-h-screen max-w-7xl mx-auto px-5 pt-20">
+      <div className="min-h-screen max-w-7xl mx-auto px-5 pt-1">
         <Outlet></Outlet>
       </div>
       <Footer></Footer>

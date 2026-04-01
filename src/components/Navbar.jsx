@@ -117,7 +117,7 @@ const Navbar = () => {
                 </div>
               </div>
               <button
-                className="btn bg-primary mx-4 text-white btn-sm"
+                className="btn bg-primary mx-4 text-white btn-sm hover:text-black"
                 onClick={handleSignOut}
               >
                 logout
@@ -125,7 +125,7 @@ const Navbar = () => {
             </div>
           ) : (
             <NavLink to="/login">
-              <button className="btn bg-primary mr-4 text-white btn-sm">
+              <button className="btn bg-primary mr-4 text-white btn-sm hover:text-black">
                 Login
               </button>
             </NavLink>
