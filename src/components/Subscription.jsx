@@ -15,7 +15,6 @@ const SubscriptionPlan = ({ subscription }) => {
     customFeatures,
   } = subscription;
 
-
   const colorPalette = [
     "bg-blue-100",
     "bg-gray-100",
@@ -39,38 +38,43 @@ const SubscriptionPlan = ({ subscription }) => {
     "bg-stone-100",
   ];
 
-
   const randomColor =
     colorPalette[Math.floor(Math.random() * colorPalette.length)];
 
   return (
-    <div
-      className={`p-6 my-4 rounded-xl shadow-lg flex flex-col h-96 overflow-y-scroll ${randomColor}`}
-    >
-      <h3 className="text-2xl font-semibold">{planName}</h3>
-      <p
-        className={`text-lg font-medium mt-2 ${
-          status === "Active" ? "text-green-600" : "text-red-600"
-        }`}
-      >
-        {status}
-      </p>
-
-      <div className="mt-4">
-        <h4 className="font-medium text-xl">Price: {price}</h4>
-        <p className="text-sm text-gray-600">Renewal Date: {renewalDate}</p>
-        <p className="text-sm text-gray-600">Billing Cycle: {billingCycle}</p>
+    <div className={`p-4 rounded-md shadow-lg flex flex-col ${randomColor}`}>
+      {/* Header */}
+      <div className="flex justify-between items-center">
+        <h3 className="text-xl font-semibold text-gray-800">{planName}</h3>
+        <span
+          className={`text-xs font-medium px-3 py-1 rounded-full ${
+            status === "Active"
+              ? "bg-green-100 text-green-700"
+              : "bg-red-100 text-red-600"
+          }`}
+        >
+          {status}
+        </span>
+      </div>
+      {/* Pricing */}
+      <div className="mt-2 border-t pt-2">
+        <h4 className="text-lg font-semibold text-gray-900">{price}</h4>
+        <p className="text-sm text-gray-500">
+          {billingCycle} • Renews on {renewalDate}
+        </p>
         {trialPeriod && (
-          <p className="text-sm text-gray-600">Trial Period: {trialPeriod}</p>
+          <p className="text-xs text-blue-500 mt-1">
+            {trialPeriod} trial available
+          </p>
         )}
       </div>
 
       {/* Benefits */}
-      <div className="mt-4">
-        <h4 className="font-medium text-xl">Benefits:</h4>
-        <ul className="list-disc pl-6 space-y-2">
+      <div className="mt-2">
+        <h4 className="font-medium text-sm border-b">Benefits:</h4>
+        <ul className="list-disc pl-4">
           {benefits.map((benefit, index) => (
-            <li key={index} className="text-sm text-gray-700">
+            <li key={index} className="text-xs text-gray-700">
               {benefit}
             </li>
           ))}
@@ -78,9 +82,9 @@ const SubscriptionPlan = ({ subscription }) => {
       </div>
 
       {/* Usage Stats */}
-      <div className="mt-4">
-        <h4 className="font-medium text-xl">Usage Stats:</h4>
-        <ul className="space-y-2 text-sm text-gray-600">
+      <div className="mt-2">
+        <h4 className="font-medium text-sm">Usage Stats:</h4>
+        <ul className="text-xs text-gray-600">
           <li>Storage Used: {usageStats.storageUsed}</li>
           <li>Data Limit: {usageStats.dataLimit}</li>
           <li>Devices Linked: {usageStats.devicesLinked}</li>
@@ -90,9 +94,9 @@ const SubscriptionPlan = ({ subscription }) => {
 
       {/* Discount */}
       {discounts && discounts.length > 0 && (
-        <div className="mt-4">
-          <h4 className="font-medium text-xl">Discounts:</h4>
-          <ul className="space-y-2 text-sm text-gray-600">
+        <div className="mt-2">
+          <h4 className="font-medium text-sm">Discounts:</h4>
+          <ul className="space-y-2 text-xs text-gray-600">
             {discounts.map((discount, index) => (
               <li key={index}>
                 <span className="font-semibold">{discount.discountCode}</span>:{" "}
@@ -106,9 +110,9 @@ const SubscriptionPlan = ({ subscription }) => {
 
       {/* Referral Info */}
       {referralInfo && (
-        <div className="mt-4">
-          <h4 className="font-medium text-xl">Referral Info:</h4>
-          <ul className="space-y-2 text-sm text-gray-600">
+        <div className="mt-2">
+          <h4 className="font-medium text-sm">Referral Info:</h4>
+          <ul className="text-xs text-gray-600">
             <li>Referral Code: {referralInfo.referralCode}</li>
             <li>Referred Users: {referralInfo.referredUsers}</li>
             <li>Bonus Earned: {referralInfo.bonusEarned}</li>
@@ -120,9 +124,9 @@ const SubscriptionPlan = ({ subscription }) => {
       )}
 
       {/* Custom Features */}
-      <div className="mt-4 flex-grow">
-        <h4 className="font-medium text-xl">Custom Features:</h4>
-        <ul className="space-y-2 text-sm text-gray-600">
+      <div className="mt-2 flex-grow">
+        <h4 className="font-medium text-sm">Custom Features:</h4>
+        <ul className="text-xs text-gray-600">
           <li>Theme: {customFeatures.customTheme}</li>
           <li>
             Personalized Recommendations:{" "}
@@ -135,9 +139,8 @@ const SubscriptionPlan = ({ subscription }) => {
           </li>
         </ul>
       </div>
-      <div className="mt-4 flex justify-end">
-        <button 
-        className="btn bg-primary ring-2 ring-offset-4 ring-primary text-white lg:text-xl">
+      <div className="mt-2 flex justify-end">
+        <button className="btn btn-sm bg-primary text-white text-sm">
           Buy this plan
         </button>
       </div>
