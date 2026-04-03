@@ -140,7 +140,7 @@ const SubscriptionPlan = ({ subscription }) => {
         </ul>
       </div>
       <div className="mt-2 flex justify-end">
-        <button className="btn btn-sm bg-primary text-white text-sm">
+        <button className="btn btn-sm bg-primary text-white text-sm hover:text-black">
           Buy this plan
         </button>
       </div>
