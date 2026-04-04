@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-// import React from 'react';
+
 import "animate.css";
 import Marquee from "react-fast-marquee";
 
@@ -16,10 +16,11 @@ const Heading = ({ title, subtitle }) => {
       >
         {title}
       </h1>
-
-      <p className="text-xs md:px-20 lg:px-80 text-primary  text-center font-thin">
-        <Marquee pauseOnHover={true}> {subtitle}</Marquee>
-      </p>
+      {subtitle && (
+        <p className="text-xs md:px-20 lg:px-80 text-primary  text-center font-thin">
+          <Marquee pauseOnHover={true}> {subtitle}</Marquee>
+        </p>
+      )}
     </div>
   );
 };

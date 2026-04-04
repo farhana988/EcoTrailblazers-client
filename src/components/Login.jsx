@@ -4,10 +4,11 @@ import { authContext } from "../provider/AuthProvider";
 import googleLogo from "../assets/google-logo.png";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { toast, ToastContainer, Zoom } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import Heading from "./Heading";
 
 const Login = () => {
-  const { signIn, signInWithGoogle,} = useContext(authContext);
+  const { signIn, signInWithGoogle } = useContext(authContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -20,11 +21,10 @@ const Login = () => {
 
     signIn(email, password)
       .then(() => {
-        navigate(location.state?.from || '/');
-     
+        navigate(location.state?.from || "/");
       })
       .catch(() => {
-        toast.error('Something went wrong. Please try again.', {
+        toast.error("Something went wrong. Please try again.", {
           position: "top-center",
           autoClose: 2000,
           hideProgressBar: false,
@@ -33,7 +33,7 @@ const Login = () => {
           draggable: true,
           progress: undefined,
           theme: "light",
-          transition: Zoom, 
+          transition: Zoom,
         });
       });
   };
@@ -41,11 +41,10 @@ const Login = () => {
   const handleGoogleLogIn = () => {
     signInWithGoogle()
       .then(() => {
-     
-        navigate(location.state?.from || '/');
+        navigate(location.state?.from || "/");
       })
       .catch(() => {
-        toast.error('Something went wrong. Please try again.', {
+        toast.error("Something went wrong. Please try again.", {
           position: "top-center",
           autoClose: 2000,
           hideProgressBar: false,
@@ -54,31 +53,31 @@ const Login = () => {
           draggable: true,
           progress: undefined,
           theme: "light",
-          transition: Zoom, 
+          transition: Zoom,
         });
       });
   };
 
   const handleForgetPass = () => {
     const email = emailRef.current.value;
-      navigate(`/forgetPassword?email=${email}`);
-        
-       
+    navigate(`/forgetPassword?email=${email}`);
   };
 
   return (
     <div>
-      <div className="hero bg-base-200 py-32">
+      <div className="hero bg-base-200">
         <div className="hero-content flex-col ">
-          <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-14 text-primary 
-          active animate__animated animate__heartBeat animate__infinite animate__slower animate__delay-5s">
-            Login Form
-          </h2>
+          <Heading title={"Login Form"} />
           <div className="card bg-base-100 w-full max-w-5xl shrink-0 shadow-2xl shadow-primary">
-            <form onSubmit={handleSubmit} className="card-body w-96 lg:w-[500px]">
+            <form
+              onSubmit={handleSubmit}
+              className="card-body w-96 lg:w-[500px]"
+            >
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-bold text-2xl text-gray-600">Email</span>
+                  <span className="label-text font-semibold text-gray-600">
+                    Email
+                  </span>
                 </label>
                 <input
                   type="email"
@@ -92,7 +91,9 @@ const Login = () => {
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-bold text-2xl text-gray-600">Password</span>
+                  <span className="label-text font-semibold text-gray-600">
+                    Password
+                  </span>
                 </label>
                 <input
                   type="password"
@@ -104,7 +105,7 @@ const Login = () => {
                 <label onClick={handleForgetPass} className="label">
                   <a
                     href="#"
-                    className="label-text-alt link link-hover text-xl text-gray-500"
+                    className="label-text-alt link link-hover text-sm text-gray-500"
                   >
                     Forgot password?
                   </a>
@@ -112,20 +113,23 @@ const Login = () => {
               </div>
 
               <div className="form-control mt-6">
-                <button className="btn bg-primary text-white font-bold text-2xl">Login</button>
+                <button className="btn btn-sm bg-primary text-white font-normal">
+                  Login
+                </button>
               </div>
 
-              <h2 className="text-lg mt-3 flex items-center gap-2">
+              <h2 className="text-sm mt-3 flex items-center gap-2">
                 No account yet?{" "}
                 <Link to="/reg">
-                  <span className=" flex items-center gap-4  text-primary active text-2xl font-extrabold">
-                    <FaLongArrowAltRight />Register
+                  <span className="flex items-center gap-2 text-base text-primary active font-extrabold">
+                    <FaLongArrowAltRight />
+                    Register
                   </span>
                 </Link>
               </h2>
             </form>
 
-            <div className="divider text-primary font-bold text-xl">OR</div>
+            <div className="divider text-primary font-semibold">OR</div>
             <div className="space-y-4">
               <button
                 onClick={handleGoogleLogIn}
