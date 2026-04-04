@@ -6,88 +6,83 @@ import { useContext, useState } from "react";
 import { authContext } from "../provider/AuthProvider";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { toast, Zoom } from "react-toastify";
+import Heading from "./Heading";
 
 const Register = () => {
-  const {setUser, registerUser,manageProfile,signInWithGoogle } = useContext(authContext);
-  const navigate = useNavigate(); 
-  const [error,setError]=useState("")
+  const { setUser, registerUser, manageProfile, signInWithGoogle } =
+    useContext(authContext);
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError('')
+    setError("");
     const email = e.target.email.value;
     const password = e.target.password.value;
     const name = e.target.name.value;
     const image = e.target.image.value;
 
- 
-
-
-    if(password.length < 6){
-      setError("Password must contain at least 6 characters")
-      return
-  }
- 
-  if(!/[a-z]/.test(password)){
-      setError("Password must contain at least one lowercase letter")
+    if (password.length < 6) {
+      setError("Password must contain at least 6 characters");
       return;
-  }
-  if(!/[A-Z]/.test(password)){
-      setError("Password must contain at least one uppercase letter")
+    }
+
+    if (!/[a-z]/.test(password)) {
+      setError("Password must contain at least one lowercase letter");
       return;
-  }
+    }
+    if (!/[A-Z]/.test(password)) {
+      setError("Password must contain at least one uppercase letter");
+      return;
+    }
 
-
-    registerUser(email, password).then(() => {
-      manageProfile(name, image)
-        .then(() => {
-          
-          const updatedUser = {
-            email,
-            displayName: name,
-            photoURL: image,
-          };
-          setUser(updatedUser);  
-          navigate('/');
-        })
-        .catch((err) => {
-          setError("Profile update failed. Please try again.");
-          console.error(err);
-        });
-    })
-    .catch((err) => {
-      setError("Registration failed. Please try again.");
-      console.error(err);
-    });
+    registerUser(email, password)
+      .then(() => {
+        manageProfile(name, image)
+          .then(() => {
+            const updatedUser = {
+              email,
+              displayName: name,
+              photoURL: image,
+            };
+            setUser(updatedUser);
+            navigate("/");
+          })
+          .catch((err) => {
+            setError("Profile update failed. Please try again.");
+            console.error(err);
+          });
+      })
+      .catch((err) => {
+        setError("Registration failed. Please try again.");
+        console.error(err);
+      });
   };
 
   const handleGoogleLogIn = () => {
-    signInWithGoogle().then(() => {
-   
-      navigate('/');
-    })
-    .catch(() => {
-      toast.error('Something went wrong. Please try again.', {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Zoom, 
+    signInWithGoogle()
+      .then(() => {
+        navigate("/");
+      })
+      .catch(() => {
+        toast.error("Something went wrong. Please try again.", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Zoom,
+        });
       });
-    });
   };
   return (
     <div>
-      
-      <div className="hero bg-base-200 min-h-screen">
+      <div className="hero bg-base-200">
         <div className="hero-content flex-col">
-        <h2  className='text-3xl md:text-5xl lg:text-7xl font-bold mb-14 text-primary active
-        animate__animated animate__heartBeat animate__infinite
-          animate__slower animate__delay-5s'>Registration Form</h2>
+          <Heading title={"Registration Form"} />
           <div className="card bg-base-100 w-full max-w-5xl shrink-0 shadow-2xl">
             <form
               onSubmit={handleSubmit}
@@ -95,7 +90,7 @@ const Register = () => {
             >
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text  font-bold text-2xl text-gray-600">
+                  <span className="label-text  font-semibold text-gray-600">
                     Name
                   </span>
                 </label>
@@ -109,7 +104,7 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-gray-600  font-bold text-2xl">
+                  <span className="label-text text-gray-600  font-semibold">
                     Email
                   </span>
                 </label>
@@ -123,7 +118,7 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-gray-600  font-bold text-2xl">
+                  <span className="label-text text-gray-600  font-semibold">
                     Photo Url
                   </span>
                 </label>
@@ -137,7 +132,7 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-gray-600  font-bold text-2xl">
+                  <span className="label-text text-gray-600  font-semibold">
                     Password
                   </span>
                 </label>
@@ -149,22 +144,23 @@ const Register = () => {
                   required
                 />
               </div>
-              {
-              error && <p className="text-red-900">{error}</p>
-            }
+              {error && <p className="text-red-900">{error}</p>}
               <div className="form-control mt-6">
-                <button className="btn  bg-primary text-white  font-bold text-2xl">Register</button>
+                <button className="btn btn-sm hover:text-black bg-primary text-white font-normal">
+                  Register
+                </button>
               </div>
-              <h2 className="text-lg mt-3 flex items-center gap-2">
+              <h2 className="text-sm mt-3 flex items-center gap-2">
                 Already have an account?
                 <Link to="/login">
-                  <span className=" flex items-center gap-4  text-primary active text-2xl font-extrabold">
-                  <FaLongArrowAltRight />Log in
+                  <span className=" flex items-center gap-2 text-primary active text-base font-extrabold">
+                    <FaLongArrowAltRight />
+                    Log in
                   </span>
                 </Link>
               </h2>
             </form>
-            <div className="divider text-primary font-bold text-xl">OR</div>
+            <div className="divider text-primary font-semibold">OR</div>
             <div className="space-y-4">
               <button
                 onClick={handleGoogleLogIn}
@@ -174,11 +170,9 @@ const Register = () => {
                 Continue with Google
               </button>
             </div>
-           
           </div>
         </div>
       </div>
-      
     </div>
   );
 };
