@@ -1,13 +1,14 @@
 import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../provider/AuthProvider";
+import Heading from "../components/Heading";
 
 const UpdateProfile = () => {
-  const location =useLocation()
-  if(location.pathname==='/updateProfile')
-        
-      { document.title= 'EcoTrailblazers | Update Profile' }
-      
+  const location = useLocation();
+  if (location.pathname === "/updateProfile") {
+    document.title = "EcoTrailblazers | Update Profile";
+  }
+
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
@@ -35,22 +36,18 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className="bg-green-50 py-32  lg:py-60">
-      <h2 className="font-bold text-2xl md:text-5xl text-primary aa animate__animated animate__heartBeat animate__infinite
-          animate__slower animate__delay-5s text-center mb-6">
-             <i> Update Your Profile</i>
-            </h2>
+    <div className="bg-green-50 py-10">
+      <Heading title={"Update Your Profile"} />
       <div className="hero   ">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="card bg-base-100 w-full max-w-5xl shrink-0 shadow-2xl shadow-primary">
-            
             <form
               className="card-body w-96 lg:w-[500px] "
               onSubmit={handleSubmit}
             >
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-bold text-2xl text-gray-600">
+                  <span className="label-text font-semibold text-gray-600">
                     Name
                   </span>
                 </label>
@@ -65,7 +62,7 @@ const UpdateProfile = () => {
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-gray-600 font-bold text-2xl">
+                  <span className="label-text text-gray-600 font-semibold">
                     Photo URL
                   </span>
                 </label>
@@ -81,8 +78,10 @@ const UpdateProfile = () => {
               {error && <div className="text-red-500 mt-2">{error}</div>}
 
               <div className="form-control mt-6">
-                <button 
-               className="btn bg-primary  text-white  ring-1 ring-offset-8 ring-primary lg:text-xl" type="submit">
+                <button
+                  className="btn btn-sm bg-primary text-white hover:text-black"
+                  type="submit"
+                >
                   Update Information
                 </button>
               </div>
