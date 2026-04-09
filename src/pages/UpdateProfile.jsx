@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../provider/AuthProvider";
-import Heading from "../components/Heading";
 
 const UpdateProfile = () => {
   const location = useLocation();
@@ -36,59 +35,48 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className="bg-green-50 py-10">
-      <Heading title={"Update Your Profile"} />
-      <div className="hero   ">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="card bg-base-100 w-full max-w-5xl shrink-0 shadow-2xl shadow-primary">
-            <form
-              className="card-body w-96 lg:w-[500px] "
-              onSubmit={handleSubmit}
-            >
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-semibold text-gray-600">
-                    Name
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Enter your name"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-gray-600 font-semibold">
-                    Photo URL
-                  </span>
-                </label>
-                <input
-                  type="url"
-                  name="image"
-                  placeholder="Enter photo URL"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-
-              {error && <div className="text-red-500 mt-2">{error}</div>}
-
-              <div className="form-control mt-6">
-                <button
-                  className="btn btn-sm bg-primary text-white hover:text-black"
-                  type="submit"
-                >
-                  Update Information
-                </button>
-              </div>
-            </form>
-          </div>
+    <div className="py-5">
+      <h3 className="text-center font-semibold text-xl">Update Your Profile</h3>
+      <form onSubmit={handleSubmit}>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text font-semibold text-gray-600">Name</span>
+          </label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            className="input input-bordered"
+            required
+          />
         </div>
-      </div>
+
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text text-gray-600 font-semibold">
+              Photo URL
+            </span>
+          </label>
+          <input
+            type="url"
+            name="image"
+            placeholder="Enter photo URL"
+            className="input input-bordered"
+            required
+          />
+        </div>
+
+        {error && <div className="text-red-500 mt-2">{error}</div>}
+
+        <div className="form-control mt-6">
+          <button
+            className="btn btn-sm bg-primary text-white hover:text-black"
+            type="submit"
+          >
+            Update Information
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
