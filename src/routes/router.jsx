@@ -1,10 +1,7 @@
-// import React from 'react'
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
-
 import ErrorPage from "../components/ErrorPage";
-import UpdateProfile from "../pages/UpdateProfile";
 import UserProfile from "../pages/UserProfile";
 import Details from "../components/Details";
 import AllBlogs from "../components/AllBlogs";
@@ -35,14 +32,7 @@ const router = createBrowserRouter([
           return { cardData, blogData, subsData };
         },
       },
-      {
-        path: "/updateProfile",
-        element: (
-          <PrivateRoute>
-            <UpdateProfile></UpdateProfile>
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "/userProfile",
         element: (

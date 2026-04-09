@@ -33,7 +33,7 @@ const UserProfile = () => {
             className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
             onClick={() => document.getElementById("my_modal_3").showModal()}
           >
-            <FaEdit />
+            <FaEdit size={20} />
           </button>
           <div className="flex justify-center mb-6">
             <img

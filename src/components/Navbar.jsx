@@ -11,7 +11,6 @@ const Navbar = () => {
     { path: "/", label: "Home" },
     { path: "/allAdventures", label: "Adventures" },
     { path: "/allBlogs", label: "Blogs" },
-    { path: "/updateProfile", label: "Update Profile", private: true },
     { path: "/userProfile", label: "User Profile", private: true },
   ];
   const filteredNavItems = navItems.filter((item) => !item.private || user);
